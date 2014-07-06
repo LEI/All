@@ -1,0 +1,15 @@
+{
+  "name": "game",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "socket.io-client": "*",
+    "kineticjs": "*",
+    "jquery": "*",
+    "normalize-css": "*"
+  }
+}
