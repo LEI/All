@@ -8,16 +8,11 @@ Game = function () {
 		height: window.innerHeight
 	});
 
-	window.onresize = function(event) {
-		stage.setWidth(window.innerWidth);
-		stage.setHeight(window.innerHeight);
-	};
-
 	stage
 		.add(backgroundLayer)
 		.add(sceneLayer);
 
-	var frameCount = 0, currentSecond = 0, frameRate = 0,
+	/*var frameCount = 0, currentSecond = 0, frameRate = 0,
 	anim = new Kinetic.Animation(function(frame) {
 		var second = Math.floor(frame.time / 1000); // ms to integer seconds
 		if (second != currentSecond) {
@@ -28,15 +23,18 @@ Game = function () {
 		frameCount ++;
 	}, sceneLayer);
 
-	anim.start();
+	anim.start();*/
 };
 
-Game.prototype.start = function() {
+Game.prototype.start = function(cards) {
+	this.drawHand(cards);
 };
 
 Game.prototype.addDeck = function(cards) {
+	sceneLayer.add(new Deck(cards));
+};
 
-	var deckLayer = new Deck(cards);
-
-	sceneLayer.add(deckLayer);
+Game.prototype.drawHand = function(cards) {
+	sceneLayer.add(new Hand(cards));
+	sceneLayer.draw();
 };

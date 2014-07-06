@@ -18,6 +18,7 @@ app.get('/', function(req, res) {
 			'components/kineticjs/kinetic.min.js',
 			'components/jquery/dist/jquery.min.js',
 			'js/card.js',
+			'js/hand.js',
 			'js/deck.js',
 			'js/game.js',
 			'js/client.js',

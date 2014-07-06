@@ -5,22 +5,13 @@ $(function(){
 	var game = new Game(),
 		socket = io.connect();
 
-	// on connection to server, ask for user's name with an anonymous callback
 	socket.on('connect', function(){
-
-		//sceneLayer.add(new Card('ace','spade')._card);
-
-		// call the server-side function 'adduser' and send one parameter (value of prompt)
-		socket.emit('adduser', /*prompt("What's your name?")*/'User');
+		socket.emit('adduser', 'User' + Math.floor(Math.random() * 1000));
+		socket.emit('Game.requestStart', /*prompt("Are you ready? (y/n)")*/'y');
 	});
 
-	// listener, whenever the server emits 'updatechat', this updates the chat body
-	socket.on('updatechat', function (username, data) {
-		//$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-	});
-
-	socket.on('updatedeck', function (cards) {
-		game.addDeck(cards);
+	socket.on('Game.start', function(data) {
+		game.start(data);
 	});
 
 	// listener, whenever the server emits 'updateusers', this updates the username list
@@ -30,6 +21,11 @@ $(function(){
 			$('#users').append('<div>' + key + '</div>');
 		});
 	});
+
+	// listener, whenever the server emits 'updatechat', this updates the chat body
+	// socket.on('updatechat', function (username, data) {
+	// 	$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+	// });
 
 	// when the client clicks SEND
 	// $('#datasend').click( function() {
