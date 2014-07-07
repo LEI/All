@@ -55,7 +55,7 @@ var Card = function (rank, type, width, height, radius) {
 		stroke: this.type.color,
 		strokeWidth: border,
 		cornerRadius: radius
-	}));
+	}).listening(false));
 
 	var fontSize = 14;
 
@@ -67,7 +67,7 @@ var Card = function (rank, type, width, height, radius) {
 		fontFamily: 'Helvetica, sans-serif',
 		align: 'center',
 		fill: stroke
-	}));
+	}).listening(false));
 
 	this.node.add(new Kinetic.Text({
 		text: this.name,
@@ -79,7 +79,7 @@ var Card = function (rank, type, width, height, radius) {
 			y: - 5
 		},
 		fill: self.type.color
-	}));
+	}).listening(false));
 
 	this.node.add(new Kinetic.Text({
 		//width: self.node.width(),
@@ -92,7 +92,8 @@ var Card = function (rank, type, width, height, radius) {
 			y: self.node.height() - 5
 		},
 		fill: self.type.color
-	}).rotate(180));
+	}).rotate(180)
+	.listening(false));
 };
 
 
