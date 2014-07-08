@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "socket.io-client": "*",
-    "kineticjs": "*",
+    "Snap.svg": "*",
     "jquery": "*",
     "normalize-css": "*"
   }

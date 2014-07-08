@@ -10,19 +10,16 @@ app.get('/', function(req, res) {
 	res.render('index', {
 		title: 'All',
 		styles: [
-			'/components/normalize-css/normalize.css',
-			'/css/style.css'
+			'/lib/normalize-css/normalize.css'
+		  , '//fonts.googleapis.com/css?family=Oswald'
+		  , '/styles/style.css'
 		],
 		scripts: [
-			'components/socket.io-client/socket.io.js',
-			'components/kineticjs/kinetic.min.js',
-			'components/jquery/dist/jquery.min.js',
-			'js/card.js',
-			'js/hand.js',
-			'js/deck.js',
-			'js/game.js',
-			'js/client.js',
-			'http://localhost:35729/livereload.js'
+			'lib/socket.io-client/socket.io.js'
+		  , 'lib/jquery/dist/jquery.min.js'
+		  , 'lib/Snap.svg/dist/snap.svg-min.js'
+		  , 'scripts/client.js'
+		  , 'http://localhost:35729/livereload.js'
 		]
 	});
 });
