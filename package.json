@@ -1,0 +1,22 @@
+{
+  "name": "tout",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "socket.io": "*"
+  },
+  "devDependencies": {
+    "event-stream": "^3.1.5",
+    "gulp": "*",
+    "gulp-changed": "*",
+    "gulp-clean": "*",
+    "gulp-jade": "*",
+    "gulp-jshint": "*",
+    "gulp-livereload": "*",
+    "gulp-load-plugins": "*",
+    "gulp-sass": "*",
+    "gulp-util": "*"
+  }
+}

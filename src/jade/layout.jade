@@ -1,0 +1,12 @@
+block mainVars
+    - Navigation = [{title:'HOME',link:'index'},{title:'ABOUT US',link:'about-us'},{title:'CONTACT',link:'contact'}]
+
+    - FooterNavigation = [{title:'PRIVACY POLICY',link:'privacy-policy'}]
+
+doctype html
+html
+    include layouts/html-head
+    body(class=page)
+        include layouts/header
+        block content
+        include layouts/footer
