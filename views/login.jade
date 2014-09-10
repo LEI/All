@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+	header
+		h1 Le Tout
+
+		div(data-bind="visible: !player.isEditingName(), click: player.editName")
+			div(data-bind="text: player.name")
+			button(data-bind="click: player.submitName") Modifier
+
+		div(data-bind="visible: player.isEditingName")
+			input(type="text", data-bind="value: player.name, event: {keypress: player.submitName}")
+			button(data-bind="click: player.submitName") Valider
+
+	section(data-bind="visible: !player.room.id()")
+
+		input(type="text", data-bind="value: newRoom, event: {keypress: player.createRoom}")
+		button(data-bind="click: createRoom") Créer
+
+		ul(data-bind="foreach: rooms")
+			li.room(data-bind="attr: { id: $data.id }")
+				a(data-bind="text: $data.title, click: joinRoom")
+
+	section(data-bind="visible: player.room.id")
+
+		button(data-bind="click: leaveRoom") Quitter
+
+		ul(data-bind="foreach: player.room.users")
+			li(data-bind="text: $data")

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	section
+		h2(data-bind="text: chat.title")
+		button(data-bind="click: player.leaveRoom") Quitter
+		div.controls(data-bind="if player.room")
+			input#message
+			button#send-message(data-bind="enabled: chat.isActive() && chat.isEditable()") Envoyer

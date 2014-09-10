@@ -8,7 +8,8 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
-  var reloadPort = 35729, files;
+  var reloadPort = 35729, files,
+      remapify = require('remapify');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -30,21 +31,56 @@ module.exports = function (grunt) {
         tasks: ['develop', 'delayed-livereload']
       },
       js: {
-        files: ['public/js/*.js'],
-        options: {
-          livereload: reloadPort
-        }
+        files: ['game/*.js'],
+        tasks: ['browserify']
+      },
+      browser: {
+        files: ['public/scripts/*.js'],
+      	options: {
+      	  livereload: reloadPort
+      	}
+      },
+      compass: {
+        files: ['public/styles/**/*.{scss,sass}'],
+        tasks: ['compass']
       },
       css: {
-        files: ['public/css/*.css'],
+        files: ['public/styles/*.css'],
         options: {
           livereload: reloadPort
-        }
+        },
+        tasks: ['cssmin']
       },
       jade: {
         files: ['views/*.jade'],
         options: {
           livereload: reloadPort
+        }
+      }
+    },
+    compass: {
+      dist: {
+        options: {
+          sassDir: 'public/styles/sass',
+          cssDir: 'public/styles',
+          environment: 'development'
+        }
+      }
+    },
+    cssmin: {
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+          '<%= grunt.template.today("yyyy-mm-dd") %> */'
+      },
+      my_target: {
+        src: 'node_modules/normalize.css/normalize.css',
+        dest: 'public/styles/normalize.css'
+      }
+    },
+    browserify: {
+      dist: {
+        files: {
+      	  'public/scripts/build.js': ['game/app.js']
         }
       }
     }
@@ -69,5 +105,5 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('default', ['develop', 'watch']);
+  grunt.registerTask('default', ['develop', 'watch', 'compass', 'browserify', 'cssmin']);
 };

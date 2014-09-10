@@ -1,27 +1,12 @@
 
 /*
- * GET home page.
+ * GET index.
  */
 
-var app = require('../app')
-  , user = require('./user');
+//var Game = require('../models/game');
 
-app.get('/', function(req, res) {
-	res.render('index', {
-		title: 'All',
-		styles: [
-			'/lib/normalize-css/normalize.css'
-		  , '//fonts.googleapis.com/css?family=Oswald'
-		  , '/styles/style.css'
-		],
-		scripts: [
-			'lib/socket.io-client/socket.io.js'
-		  , 'lib/jquery/dist/jquery.min.js'
-		  , 'lib/Snap.svg/dist/snap.svg-min.js'
-		  , 'scripts/client.js'
-		  , 'http://localhost:35729/livereload.js'
-		]
+exports.index = function(req, res) {
+	res.render('login', {
+		title: 'Login'
 	});
-});
-
-app.get('/users', user.list);
+};

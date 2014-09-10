@@ -1,13 +1,29 @@
 extends layout
 
 block content
-	div.controls
-		div#users
-	div#snap
 
-	//- h1 #{title} Users
-	//- div#users
-	//- div
-	//- 	div#conversation
-	//- 	input#data
-	//- 	input#datasend(type='button', value='send')
+	header
+		h1 Le Tout
+		div(data-bind="if: !player.editingName()")
+			div(data-bind="text: player.name, click: player.editName")
+		div(data-bind="if: player.editingName()")
+			input(type="text", data-bind="value: player.name, event: {keypress: player.submitName}")
+			// , valueUpdate: 'afterkeydown'
+			button(data-bind="click: player.submitName") OK
+
+	h2 Rooms
+	button(data-bind="click: createRoom") Créer
+	ul#rooms(data-bind="foreach: rooms")
+		li.room(data-bind="attr: { id: $data.id }")
+			a(data-bind="text: $data.name, click: $parent.switchRoom")
+
+	ul(data-bind="foreach: chat.messsages")
+		li(data-bind="html: $data")
+
+	section(data-bind="if: player.room")
+
+		h3(data-bind="text: roomName")
+		button(data-bind="click: player.leaveRoom") Quitter
+
+		input(data-bind="value: chat.message, event: {keypress: chat.submitMessage}")
+		button(data-bind="click: chat.submitMessage, enabled: chat.isActive()") Envoyer
